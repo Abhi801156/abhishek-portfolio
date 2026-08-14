@@ -65,7 +65,7 @@ canvas {
   top: 18px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(1120px, calc(100% - 40px));
+  width: min(1120px, calc(100% - 210px));
   z-index: 100;
   padding: 12px 16px;
   display: flex;
@@ -128,17 +128,51 @@ canvas {
   background: rgba(0, 234, 255, 0.06);
 }
 
+/* =========================
+   LET'S TALK - OUTSIDE NAVBAR
+========================= */
+
 .nav-contact {
+  position: fixed;
+  top: 35px;
+  right: 28px;
+
+  z-index: 500;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 112px;
+  min-height: 48px;
+  padding: 10px 18px;
+
   color: #00eaff;
-  border: 1px solid rgba(0, 234, 255, 0.4);
-  padding: 9px 14px;
-  border-radius: 10px;
-  transition: 0.3s ease;
+  background: rgba(2, 5, 11, 0.92);
+
+  border: 1px solid rgba(0, 234, 255, 0.55);
+  border-radius: 14px;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 0 20px rgba(0, 234, 255, 0.05);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .nav-contact:hover {
-  background: #00eaff;
   color: #02050b;
+  background: #00eaff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 30px rgba(0, 234, 255, 0.25);
 }
 
 /* =========================
@@ -3987,5 +4021,100 @@ footer {
 
   .experience-certificate-actions .secondary-btn {
     width: 100%;
+  }
+}
+
+/* ==================================================
+   FINAL NAVBAR OVERRIDE
+   Move Let's Talk outside the navbar on desktop
+================================================== */
+
+@media (min-width: 1051px) {
+  .navbar {
+    position: fixed;
+  }
+
+  .nav-contact {
+    position: absolute !important;
+    right: -150px;
+    top: 50%;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 120px;
+    height: 48px;
+    padding: 0 20px;
+
+    transform: translateY(-50%);
+
+    border: 1px solid rgba(0, 234, 255, 0.45);
+    border-radius: 14px;
+    background: rgba(5, 10, 20, 0.85);
+
+    color: #00eaff;
+    white-space: nowrap;
+
+    box-shadow: 0 0 0 rgba(0, 234, 255, 0);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    z-index: 305;
+  }
+
+  .nav-contact:hover {
+    transform: translateY(-50%) translateY(-2px);
+    background: rgba(0, 234, 255, 0.08);
+    color: #00eaff;
+    border-color: rgba(0, 234, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 234, 255, 0.16);
+  }
+}
+
+/* Keep the desktop button from being clipped on smaller widths */
+@media (min-width: 1051px) and (max-width: 1250px) {
+  .navbar {
+    width: calc(100% - 300px);
+    max-width: none;
+  }
+
+  .nav-contact {
+    right: -135px;
+  }
+}
+
+/* Tablet/mobile: keep the existing hamburger layout */
+@media (max-width: 1050px) {
+  .nav-contact {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-contact {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1100px) {
+
+  .navbar {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+  }
+
+  .nav-contact {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-contact {
+    display: none;
+  }
+
+  .navbar {
+    width: calc(100% - 24px);
   }
 }
